@@ -1,16 +1,150 @@
-/*
-Make sure that you can clearly define the common construction steps for building all available product representations. Otherwise, you won’t be able to proceed with implementing the pattern.
+interface Builder {
+    reset(): void
+    ConstructHouse(): void
+    AddPool(): void
+    AddFireplace(): void
+    ConstructGarage(): void
+    AddGuestBedroom(): void
 
-Declare these steps in the base builder interface.
+}
 
-Create a concrete builder class for each of the product representations and implement their construction steps.
+interface House {
+    construction: string
+    addedFeatures: string[]
+}
 
-Don’t forget about implementing a method for fetching the result of the construction. The reason why this method can’t be declared inside the builder interface is that various builders may construct products that don’t have a common interface. Therefore, you don’t know what would be the return type for such a method. However, if you’re dealing with products from a single hierarchy, the fetching method can be safely added to the base interface.
+class LuxuryBuilder implements Builder {
+    house: {
+        construction: string,
+        addedFeatures: string[]
+    }
 
-Think about creating a director class. It may encapsulate various ways to construct a product using the same builder object.
+    constructor() {
+        this.house = {
+            construction: '',
+            addedFeatures: []
+        }
+    }
 
-The client code creates both the builder and the director objects. Before construction starts, the client must pass a builder object to the director. Usually, the client does this only once, via parameters of the director’s class constructor. The director uses the builder object in all further construction. There’s an alternative approach, where the builder is passed to a specific product construction method of the director.
+    reset(): void {
+        const house: House = {
+            construction: '',
+            addedFeatures: []
+        }
 
-The construction result can be obtained directly from the director only if all products follow the same interface. Otherwise, the client should fetch the result from the builder.
-*/
+        this.house = { ...house }
+    }
 
+    getProduct(): House {
+        return { ... this.house }
+    }
+
+    ConstructHouse(): void {
+        this.house.construction = 'Built on schedule.'
+    }
+
+    AddPool(): void {
+        this.house.addedFeatures.push('Pool')
+    }
+
+    AddFireplace(): void {
+        this.house.addedFeatures.push('Fireplace')
+    }
+    ConstructGarage(): void {
+        this.house.addedFeatures.push('Garage')
+    }
+    AddGuestBedroom(): void {
+        this.house.addedFeatures.push('Guest bedroom')
+    }
+}
+
+class VirtualBuilder implements Builder {
+    compiledTemplate: string[]
+
+    constructor() {
+        this.compiledTemplate = []
+    }
+
+    reset(): void {
+        const compiledTemplate: string[] = []
+
+        this.compiledTemplate = [...compiledTemplate]
+    }
+
+    getProduct(): string[] {
+        return [...this.compiledTemplate]
+    }
+
+    ConstructHouse(): void {
+        this.compiledTemplate.push('abstract_house_code')
+    }
+
+    AddPool(): void {
+        this.compiledTemplate.push('figurative_pool')
+    }
+
+    AddFireplace(): void {
+        this.compiledTemplate.push('figment_of_fire')
+    }
+    ConstructGarage(): void {
+        this.compiledTemplate.push('imaginary_garage')
+    }
+    AddGuestBedroom(): void {
+        this.compiledTemplate.push('thought_of_guest')
+    }
+}
+
+class Director {
+    constructor() {
+    }
+
+    createMinimalProduct(b: Builder) {
+        b.reset()
+
+        b.ConstructHouse()
+        b.AddFireplace()
+    }
+
+    createLuxuryProduct(b: Builder) {
+        b.reset()
+
+        b.ConstructHouse()
+        b.ConstructGarage()
+        b.AddFireplace()
+        b.AddGuestBedroom()
+        b.AddPool()
+    }
+}
+
+function main() {
+    const luxuryBuilder = new LuxuryBuilder()
+    const virtualBuilder = new VirtualBuilder()
+
+    const director = new Director()
+
+    director.createLuxuryProduct(luxuryBuilder)
+    const luxuryProduct = luxuryBuilder.getProduct()
+
+    director.createMinimalProduct(luxuryBuilder)
+    const minimalProduct = luxuryBuilder.getProduct()
+
+    console.log('Luxury physical product:')
+    console.log(luxuryProduct)
+
+    console.log('Minimal physical product:')
+    console.log(minimalProduct)
+
+    director.createLuxuryProduct(virtualBuilder)
+    const virtualLuxury = virtualBuilder.getProduct()
+
+    director.createMinimalProduct(virtualBuilder)
+    const virtualMinimal = virtualBuilder.getProduct()
+
+    console.log('Luxury virtual product:')
+    console.log(virtualLuxury)
+
+    console.log('Minimal minimal product:')
+    console.log(virtualMinimal)
+}
+
+main()
