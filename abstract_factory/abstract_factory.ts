@@ -56,6 +56,11 @@ class OrkBoardingParty implements BoardingParty {
 }
 
 class NavalEngagement {
+    /**
+     * Essential segment.
+     * Abstract factory field.
+     * Any factory fulfilling the interface can be inserted here and worked with below.
+     */
     factory: FleetFactory
 
     constructor(f: FleetFactory) {
@@ -71,7 +76,7 @@ class NavalEngagement {
     }
 }
 
-function mainAbstractFactory(faction: string) {
+function main(faction: string) {
     if (faction === 'Imperial') {
         var fleetFactory = new ImperialFleetFactory()
     } else if (faction === 'Ork') {
@@ -86,4 +91,4 @@ function mainAbstractFactory(faction: string) {
     newEngagement.resolve()
 }
 
-mainAbstractFactory('Ork')
+main('Ork')

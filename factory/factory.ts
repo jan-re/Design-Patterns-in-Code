@@ -2,7 +2,8 @@ abstract class Venue {
     protected abstract intro: string
 
     /**
-     * Musician interface here functions as the Product of the factory method hireMusician.
+     * Essential segment.
+     * Factory method defined as abstract and filled in through subclasses.
     */
     protected abstract hireMusician(): Musician
 
@@ -54,7 +55,7 @@ class IndieMusician implements Musician {
     }
 }
 
-function mainFactory(): void {
+function main(): void {
     const rockClub = new RockVenue()
     const indieClub = new IndieVenue()
 
@@ -62,4 +63,4 @@ function mainFactory(): void {
     indieClub.switchOnRadio()
 }
 
-mainFactory()
+main()

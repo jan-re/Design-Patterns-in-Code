@@ -1,3 +1,9 @@
+/**
+ * Essential segment.
+ * Builder interface should contain a reset() method and all of the established build steps.
+ * Build steps should be common.
+ * The eventual products do not have to share an interface.
+ */
 interface Builder {
     reset(): void
     ConstructHouse(): void
@@ -5,7 +11,6 @@ interface Builder {
     AddFireplace(): void
     ConstructGarage(): void
     AddGuestBedroom(): void
-
 }
 
 interface House {
@@ -95,8 +100,6 @@ class VirtualBuilder implements Builder {
 }
 
 class Director {
-    constructor() {
-    }
 
     createMinimalProduct(b: Builder) {
         b.reset()
