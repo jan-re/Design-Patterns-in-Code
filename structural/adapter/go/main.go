@@ -3,10 +3,14 @@ package main
 import "fmt"
 
 func main() {
-	ms := ModernStandard{}
+	ms := ModernStandard{
+		output: "Output format produced by the modern code standard.",
+	}
 	fmt.Println(ms.getOutput())
 
-	ls := LegacyStandard{}
+	ls := LegacyStandard{
+		legacyOutput: ".dradnatSycageL eht fo roivaheb laicepS",
+	}
 	fmt.Printf("Legacy output not understandable: %s\n", ls.getLegacyOutput())
 
 	als := Adapter{

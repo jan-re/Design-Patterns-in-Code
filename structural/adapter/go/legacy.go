@@ -5,7 +5,5 @@ type LegacyStandard struct {
 }
 
 func (ls *LegacyStandard) getLegacyOutput() string {
-	ls.legacyOutput = ".dradnatSycageL eht fo roivaheb laicepS"
-
 	return ls.legacyOutput
 }

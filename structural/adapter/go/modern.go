@@ -5,7 +5,5 @@ type ModernStandard struct {
 }
 
 func (ms *ModernStandard) getOutput() string {
-	ms.output = "Output format produced by the modern code standard."
-
 	return ms.output
 }
