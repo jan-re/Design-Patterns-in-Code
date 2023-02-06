@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// Decorators contain the original structure as a field.
 type Logger struct {
 	Communique
 }

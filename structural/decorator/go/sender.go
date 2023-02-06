@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// This is the initial step, before decoration.
 type Sender struct {
 }
 
