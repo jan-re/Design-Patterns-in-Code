@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type Log struct {
 	loggedTransactions []Transaction
 }
@@ -16,4 +18,6 @@ func (l *Log) logTransaction(accountID string, transactionType string, amount in
 		transactionType: transactionType,
 		amount:          amount,
 	})
+
+	fmt.Println("This transaction has been logged.")
 }
