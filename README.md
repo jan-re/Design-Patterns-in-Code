@@ -2,4 +2,4 @@ Heavily references and uses the patterns described in https://www.goodreads.com/
 
 This repo is here for me to practice what I've read about.
 
-Written in TS and Go, depending on the pattern.
+Written in TS, Go, or Python, depending on the pattern.
