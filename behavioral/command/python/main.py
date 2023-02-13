@@ -12,3 +12,9 @@ if __name__ == "__main__":
     invoker = Invoker(on_start=simple_command, on_finish=complex_command)
 
     invoker.invoke()
+
+
+"""
+Essence of the command pattern is storing actions as objects with a given payload
+and the potential to execute themselves or to pass the execution to receiver objects.
+"""
