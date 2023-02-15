@@ -1,17 +1,16 @@
 from collections.abc import Iterator
 from typing import Any
-from iterable import Collection
-
 
 class SequentialIterator(Iterator):
     _position: int
+    _collection: list[Any]
     _reverse: bool
-    _collection: Collection
 
-    def __init__(self, collection, reverse=False) -> None:
-        self._reverse = reverse
+    def __init__(self, collection: list[Any], reverse=False) -> None:
         self._collection = collection
-        self._position = -1 if reverse else 1
+        self._position = -1 if reverse else 0
+
+        self._reverse = reverse
 
     def __next__(self) -> Any:
         try:
